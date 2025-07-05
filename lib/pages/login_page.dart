@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
     double cardWidth = isDesktop ? 400 : (isTablet ? 500 : double.infinity);
 
     // Responsive logo size
-    double logoSize = isDesktop ? 100 : (isTablet ? 140 : 170);
+    double logoSize = isDesktop ? 100 : (isTablet ? 140 : 140);
 
     // Responsive spacing
     double topSpacing = isDesktop ? 80 : (isTablet ? 70 : 60);
