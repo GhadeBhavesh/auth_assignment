@@ -16,8 +16,15 @@ class GradientButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isDesktop = screenWidth >= 1024;
+    final isTablet = screenWidth >= 768;
+
+    final responsiveHeight = isDesktop ? 60.0 : (isTablet ? 58.0 : height);
+    final responsiveFontSize = isDesktop ? 18.0 : (isTablet ? 17.0 : 16.0);
+
     return Container(
-      height: height,
+      height: responsiveHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius),
         gradient: const LinearGradient(
@@ -42,8 +49,8 @@ class GradientButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: const TextStyle(
-            fontSize: 18,
+          style: TextStyle(
+            fontSize: responsiveFontSize,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),

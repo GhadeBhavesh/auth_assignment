@@ -19,6 +19,46 @@ class AppColors {
   );
 }
 
+class AppBreakpoints {
+  static const double mobile = 0;
+  static const double tablet = 768;
+  static const double desktop = 1024;
+  static const double largeDesktop = 1440;
+}
+
+class AppResponsive {
+  static bool isMobile(BuildContext context) =>
+      MediaQuery.of(context).size.width < AppBreakpoints.tablet;
+
+  static bool isTablet(BuildContext context) =>
+      MediaQuery.of(context).size.width >= AppBreakpoints.tablet &&
+      MediaQuery.of(context).size.width < AppBreakpoints.desktop;
+
+  static bool isDesktop(BuildContext context) =>
+      MediaQuery.of(context).size.width >= AppBreakpoints.desktop;
+
+  static bool isLargeDesktop(BuildContext context) =>
+      MediaQuery.of(context).size.width >= AppBreakpoints.largeDesktop;
+
+  static double getResponsiveValue(
+    BuildContext context, {
+    required double mobile,
+    double? tablet,
+    double? desktop,
+    double? largeDesktop,
+  }) {
+    if (isLargeDesktop(context) && largeDesktop != null) {
+      return largeDesktop;
+    } else if (isDesktop(context) && desktop != null) {
+      return desktop;
+    } else if (isTablet(context) && tablet != null) {
+      return tablet;
+    } else {
+      return mobile;
+    }
+  }
+}
+
 class AppTextStyles {
   static const TextStyle welcomeTitle = TextStyle(
     fontSize: 32,

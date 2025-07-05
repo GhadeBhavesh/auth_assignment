@@ -20,12 +20,22 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isDesktop = screenWidth >= 1024;
+    final isTablet = screenWidth >= 768;
+
     return TextFormField(
       controller: controller,
       obscureText: obscureText,
+      style: TextStyle(fontSize: isDesktop ? 16 : (isTablet ? 15 : 14)),
       decoration: InputDecoration(
         labelText: labelText,
-        prefixIcon: Icon(prefixIcon, color: Colors.grey[600]),
+        labelStyle: TextStyle(fontSize: isDesktop ? 16 : (isTablet ? 15 : 14)),
+        prefixIcon: Icon(
+          prefixIcon,
+          color: Colors.grey[600],
+          size: isDesktop ? 24 : (isTablet ? 22 : 20),
+        ),
         suffixIcon: suffixIcon,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -33,9 +43,9 @@ class CustomTextFormField extends StatelessWidget {
         ),
         filled: true,
         fillColor: Colors.grey[100],
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 16,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: isDesktop ? 20 : (isTablet ? 18 : 16),
+          vertical: isDesktop ? 20 : (isTablet ? 18 : 16),
         ),
       ),
       validator: validator,
